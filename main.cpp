@@ -5,10 +5,18 @@
 
 #define TH32CS_PROCESS 0x00000002
 
+
+struct MemoryRegion {
+    PVOID baseAddress;
+    SIZE_T regionSize;
+    DWORD state;
+};
+
 struct ProcessInfo {
     std::string processName;
     DWORD processID;
     SIZE_T workingSetSize;
+    std::vector<MemoryRegion> memoryRegions;
 };
 
 std::vector<ProcessInfo> getProcessList() {
